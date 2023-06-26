@@ -2,6 +2,10 @@ from random import randint
 from time import sleep
 from snake_game_utils import *
 
+
+score = 0
+
+
 def change_food_position():
     random_x = randint(-280, 280)
     random_y = randint(-280, 280)
@@ -52,7 +56,15 @@ snake_head.direction = ""
 snake_food = make_turtle("circle", "red")
 change_food_position()
 
-main_surface = git
+
+score_board = make_turtle("square", "white")
+score_board.hideturtle()
+score_board.goto(0, 260)
+score_board.write(f"Score: {score}",
+                  align="center",
+                  font=("Tahoma", 22))
+
+main_surface = make_screen()
 main_surface.listen()
 main_surface.onkeypress(go_up, "Up")
 main_surface.onkeypress(go_down, "Down")
@@ -64,5 +76,7 @@ main_surface.onkeypress(go_right, "Right")
 running = True
 while running:
     main_surface.update()
+    if snake_head.distance(snake_food) < 20:
+        change_food_position()
     move_snake()
     sleep(0.2)
