@@ -15,3 +15,7 @@ def make_turtle(tshape, tcolor):
     my_turtle.penup()
     my_turtle.speed('fastest')
     return my_turtle
+
+def reset(head):
+    head.goto(0,0)
+    head.direction = ""
