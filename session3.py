@@ -48,8 +48,6 @@ def go_right():
     snake_head.direction = "right"
 
 
-
-
 snake_head = make_turtle("square", "blue")
 snake_head.setposition(100, 100)
 snake_head.direction = ""
@@ -71,6 +69,7 @@ main_surface.onkeypress(go_down, "Down")
 main_surface.onkeypress(go_left, "Left")
 main_surface.onkeypress(go_right, "Right")
 
+snake_tails = []
 
 # Game Main loop
 running = True
@@ -83,9 +82,23 @@ while running:
     if snake_head.distance(snake_food) < 20:
         score += 1
         change_food_position()
+        new_tail = make_turtle("square", "cyan")
+        snake_tails.append(new_tail)
 
     if snake_head.xcor() > 290 or snake_head.xcor() < -290 or snake_head.ycor() > 290 or snake_head.ycor() < -290:
         reset(snake_head)
-    
+
+    for i in range(len(snake_tails) - 1, 0, -1):
+        prevx = snake_tails[i-1].xcor()
+        prevy = snake_tails[i-1].ycor()
+        snake_tails[i].setpos(prevx, prevy)
+
+    if len(snake_tails)>0:
+        headx = snake_head.xcor()
+        heady = snake_head.ycor()
+        snake_tails[0].setpos(headx, heady)
+
+
+
     move_snake()
     sleep(0.2)
