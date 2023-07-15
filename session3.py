@@ -8,7 +8,7 @@ score = 0
 
 def change_food_position():
     random_x = randint(-280, 280)
-    random_y = randint(-280, 280)
+    random_y = randint(-280, 230)
     snake_food.goto(random_x, random_y)
 
 
@@ -86,7 +86,7 @@ while running:
         snake_tails.append(new_tail)
 
     if snake_head.xcor() > 290 or snake_head.xcor() < -290 or snake_head.ycor() > 290 or snake_head.ycor() < -290:
-        reset(snake_head)
+        reset(snake_head, snake_tails)
 
     for i in range(len(snake_tails) - 1, 0, -1):
         prevx = snake_tails[i-1].xcor()

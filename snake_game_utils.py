@@ -1,4 +1,6 @@
 from turtle import Screen, Turtle
+
+
 def make_screen():
     main_surface = Screen()
     main_surface.bgcolor('black')
@@ -16,6 +18,11 @@ def make_turtle(tshape, tcolor):
     my_turtle.speed('fastest')
     return my_turtle
 
-def reset(head):
-    head.goto(0,0)
+
+def reset(head, tails):
+    head.goto(0, 0)
     head.direction = ""
+    for t in tails:
+        t.ht()
+
+    tails.clear()
