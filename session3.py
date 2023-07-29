@@ -3,7 +3,12 @@ from time import sleep
 from snake_game_utils import *
 
 score = 0
-high_score = 0
+
+try:
+    f = open("snake_result.txt", "r")
+    high_score = int(f.read())
+except:
+    high_score = 0
 
 
 def change_food_position():
@@ -72,6 +77,13 @@ main_surface.onkeypress(go_right, "Right")
 
 
 def on_close():
+    try:
+        f = open("snake_result.txt", "w")
+        f.write(str(high_score))
+    except:
+        print("can not open file in write mode")
+    finally:
+        f.close()
     global running
     running = False
 
