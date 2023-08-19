@@ -18,7 +18,7 @@ def result(user_g, sec):
         elif user_g[i] in sec:
             res += "Pico, "
 
-    if len(sec) == 0:
+    if len(res) == 0:
         return "bagels"
     
     return res
